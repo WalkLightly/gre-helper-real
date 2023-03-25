@@ -1,21 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap");
+* {
+  font-family: "Didact Gothic", sans-serif !important;
+}
 .words-main-container {
   border-radius: 5px;
   margin-top: 15px;
   height: 75px;
-  width: 98vw;
-  background-color: white;
+  width: 96vw;
   display: flex;
   justify-content: center;
 }
 
 .words {
-  color: black;
   display: grid;
   height: 100%;
   width: 98%;
   text-align: center;
   grid-template-columns: repeat(5, 1fr);
-  font-size: 13px;
+  font-size: 12px !important;
 }
 .words div {
   display: flex;
@@ -26,8 +28,8 @@
 .sentences-container {
   margin-top: 10px;
   border-radius: 5px;
-  width: 97vw;
-  border: 2px solid teal;
+  margin-bottom: 10px;
+  width: 96vw;
   background-color: white;
   display: flex;
   justify-content: center;

@@ -1,57 +1,51 @@
+import React, { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import { Button, Menu, MenuItem } from "@mui/material";
-import UnitSentencesReview from "./components/SentencesTest/UnitSentencesReview";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { Button } from "@mui/material";
+import UnitSentencesReview from "./components/sentences-test/UnitSentencesReview";
+import WordsList from "./components/words-list/WordsList";
+
+const styles = {
+  button: {
+    color: "white",
+    width: "100%",
+  },
+};
 
 function App() {
-  const [unit, setUnit] = useState(1);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [route, setRoute] = useState("home");
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const changeRoute = (routeTo) => {
+    setRoute(routeTo);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const changeUnit = (event) => {
-    setUnit(event.target.value);
-    handleClose();
-  };
-  const renderUnitButtons = () => {
-    let menuItems = [];
-
-    for (var i = 1; i < 81; i++) {
-      menuItems.push(
-        <MenuItem value={i} onClick={changeUnit} key={i}>
-          Unit {i}
-        </MenuItem>
-      );
+  const routeTo = () => {
+    switch (route) {
+      case "home":
+        return <UnitSentencesReview />;
+      case "words":
+        return <WordsList />;
     }
-
-    return menuItems;
   };
+
   return (
     <div className="App">
-      <Header />
-      <div style={{ width: "98%" }}>
+      <div className="header">
         <Button
-          sx={{ background: "gray", color: "white", marginTop: "5px" }}
-          variant="contained"
-          endIcon={<ExpandMoreIcon />}
-          onClick={handleClick}
+          variant="flat"
+          sx={styles.button}
+          onClick={() => changeRoute("home")}
         >
-          Unit {unit}
+          HOME
         </Button>
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-          {renderUnitButtons()}
-        </Menu>
+        <Button
+          variant="flat"
+          sx={styles.button}
+          onClick={() => changeRoute("words")}
+        >
+          WORDS
+        </Button>
       </div>
-      <UnitSentencesReview />
+      <div>{routeTo()}</div>
     </div>
   );
 }
